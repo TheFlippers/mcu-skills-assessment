@@ -2,6 +2,7 @@
 \usepackage{indentfirst}
 \usepackage{blindtext}
 \usepackage{graphicx}
+\usepackage{wrapfig}
 \graphicspath{ {./images/} }
 
 \title{Skills Assessment}
@@ -14,7 +15,9 @@
 
   \maketitle
 
-  \section*{UART Bus Decoding}
+  \section{UART Bus Decoding}
+
+  \subsection{Required Equipment}
 
   UART bus decoding is a method of capturing communications over a UART bus and
   decoding the information sent between devices. Equipment often decodes the
@@ -29,19 +32,41 @@
     \caption{An oscilloscope properly decoding data from a UART bus}
   \end{figure}
 
+  \subsection{Making the Measurement}
+
   Firstly, the oscilloscope must be turned on and the proper number of probes
   must be connected. For UART, two cables are needed to test two way
   asynchronous communications. If only one signal needs to be decoded, then only
-  one cable needs to be connected to the oscilloscope.
+  one cable needs to be connected to the oscilloscope. However, having more
+  cables connected to the oscilloscope won't hurt anything, it just clutter up
+  your area.
 
-  These oscilloscopes have a Serial button located between buttons 1 and 2
-  for for probe configurations. This button opens the serial protocol decoding
-  menu where settings can be changed to match the expected bus configurations.
+  \begin{wrapfigure}{r}{0.4\textwidth}
+    \includegraphics[width=30ex]{serial_button_scope}
+    \caption{Serial button located between probe configuration buttons 1 and 2.}
+  \end{wrapfigure}
 
-  \begin{figure}[h]
-    \includegraphics[width=50ex]{serial_button_scope}
-    \includegraphics[width=\textwidth]{serial_decode_scope}
-    \caption{Serial button and Serial Decode Menu}
-  \end{figure}
+  The oscilloscopes have a Serial button located between buttons 1 and 2.
+  Pressing this button opens the serial protocol decoding menu at the bottom of
+  the display. Here, settings can be adjusted to match expected bus
+  configurations.
+
+
+  \begin{wrapfigure}{r}{44ex}
+    \includegraphics[width=44ex]{serial_decode_scope}
+    \caption{Serial Decode Menu. Currently shown with UART/RS232 selected.}
+  \end{wrapfigure}
+
+  \begin{wrapfigure}{r}{25ex}
+    \includegraphics[width=25ex]{mode_menu}
+    \caption{Mode selection menu on oscilloscope}
+  \end{wrapfigure}
+
+  Inside the menu, selecting the mode button provides a list of communication
+  protocols the oscilloscope can decode. This section describes UART decoding,
+  so select UART/RS232 from the list. Other sections discuss how to decode some
+  of the other protocls listed here. After selcting UART/RS232, the remaining
+  entries in the Serial Decode Menu are now specific to decoding UART/RS232.
+
 
 \end{document}
