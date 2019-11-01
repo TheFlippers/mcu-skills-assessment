@@ -3,7 +3,7 @@
 \usepackage{blindtext}
 \usepackage{graphicx}
 \usepackage{wrapfig}
-\graphicspath{ {./images/} }
+\graphicspath{ {./images/uart/} }
 
 \title{Skills Assessment}
 \author{Nathan Givens}
@@ -68,5 +68,24 @@
   of the other protocls listed here. After selcting UART/RS232, the remaining
   entries in the Serial Decode Menu are now specific to decoding UART/RS232.
 
+  % Signals submenu
+  The signals submenu gives the ability to specify which input is associated
+  with which signal. In the case of UART, the availbalbe signals are Rx and Tx.
+  In the example, channel 1 is set to Rx and receives the signals that are
+  leaving through the devices Tx connection. The channel could be connected to
+  either Rx or Tx from the device, but sticking with convention should help to
+  prevent confusion while debugging. The thresholds for signals can also be
+  adjusted here in case different voltages are being used. The threshold shown
+  % TODO add figure and figure reference
+  for Rx was set to just above the threshold for logic high in the device meant
+  to receive the signals. The Tx signal was not set because, for this example,
+  there was no Tx signal connected. Now that the oscilloscope knows which signal
+  is connected to which channel, the bus settings can be configured so signals
+  can be properly decoded.
+
+  \begin{figure}[h]
+    \includegraphics[width=0.7\textwidth]{signals_menu}
+    \caption{Signals submenu showing channel 1 as Rx with a threshold of 1.98V}
+  \end{figure}
 
 \end{document}
