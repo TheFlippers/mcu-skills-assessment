@@ -41,32 +41,35 @@
   cables connected to the oscilloscope won't hurt anything, it just clutter up
   your area.
 
-  \begin{wrapfigure}{r}{0.4\textwidth}
-    \includegraphics[width=30ex]{serial_button_scope}
-    \caption{Serial button located between probe configuration buttons 1 and 2.}
+  \begin{wrapfigure}{l}{44ex}
+    \includegraphics[width=44ex]{serial_button_scope}
+    \includegraphics[width=44ex]{serial_decode_scope}
+    \caption{Serial button located between buttons 1 and 2. Serial Decode Menu,
+      shown with UART/RS232 selected.}
   \end{wrapfigure}
 
   The oscilloscopes have a Serial button located between buttons 1 and 2.
   Pressing this button opens the serial protocol decoding menu at the bottom of
-  the display. Here, settings can be adjusted to match expected bus
-  configurations.
-
-
-  \begin{wrapfigure}{r}{44ex}
-    \includegraphics[width=44ex]{serial_decode_scope}
-    \caption{Serial Decode Menu. Currently shown with UART/RS232 selected.}
-  \end{wrapfigure}
+  the display. The menu changes according to the selected protocol. This menu
+  holds all of the settings associated with serial bus deocing. This
+  document will discuss some of the various settings that are available, and
+  walk through an example of configuring the scope to properly decode a UART bus
+  communication.
 
   \begin{wrapfigure}{r}{25ex}
     \includegraphics[width=25ex]{mode_menu}
     \caption{Mode selection menu on oscilloscope}
+    \label{fig:uart_mode_menu}
   \end{wrapfigure}
 
-  Inside the menu, selecting the mode button provides a list of communication
-  protocols the oscilloscope can decode. This section describes UART decoding,
-  so select UART/RS232 from the list. Other sections discuss how to decode some
-  of the other protocls listed here. After selcting UART/RS232, the remaining
-  entries in the Serial Decode Menu are now specific to decoding UART/RS232.
+  Inside the serial menu, the mode needs to be set to reflect the expected
+  communication. Conveniently, the mode button allows this configuration to be
+  made. Pressing the mode button reveals a list of communication protocols that
+  the oscilloscope can decode. Because this section describes UART communication
+  decoding, UART/RS232 is selected from the list. Other sections of this
+  document discuss some of the other protocols listed here. After UART/RS232 is
+  selected, all submenus update to display settings
+  specific to decoding UART.\@
 
   % Signals submenu
   The signals submenu gives the ability to specify which input is associated
@@ -76,16 +79,32 @@
   either Rx or Tx from the device, but sticking with convention should help to
   prevent confusion while debugging. The thresholds for signals can also be
   adjusted here in case different voltages are being used. The threshold shown
-  % TODO add figure and figure reference
-  for Rx was set to just above the threshold for logic high in the device meant
-  to receive the signals. The Tx signal was not set because, for this example,
-  there was no Tx signal connected. Now that the oscilloscope knows which signal
-  is connected to which channel, the bus settings can be configured so signals
-  can be properly decoded.
+  in Figure~\ref{fig:uart_signals_menu} for Rx was set to just above the threshold
+  for logic high in the device meant to receive the signals. The Tx signal was
+  not set because, for this example, there was no Tx signal connected. Now that
+  the oscilloscope knows which signal is connected to which channel, the bus
+  settings can be configured so signals can be properly decoded.
 
   \begin{figure}[h]
-    \includegraphics[width=0.7\textwidth]{signals_menu}
+    \includegraphics[width=\textwidth]{signals_menu}
     \caption{Signals submenu showing channel 1 as Rx with a threshold of 1.98V}
+    \label{fig:uart_signals_menu}
   \end{figure}
+
+  % Bus Configuration
+  The configurations for UART communication are located in the Bus Config Menu.
+  The number of bits, parity (if any), baud rate, idle polarity, and bit order
+  can be adjusted here to match the expected transmission settings. The baud
+  rate is adjusted from within a submenu where a value can be entered directly.
+  This example uses eight bit transmissions without a parity bit. An idle line
+  should remain at logic high, and the bits are transmitted Least Significant
+  Bit first. This was also recorded at 19,200 baud.
+
+  \begin{figure}[h]
+    \includegraphics[width=\textwidth]{bus_config}
+    \caption{UART/RS232 Bus Configuration Menu}
+  \end{figure}
+
+  % Settings
 
 \end{document}
