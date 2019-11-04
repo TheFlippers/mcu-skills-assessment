@@ -105,6 +105,46 @@
     \caption{UART/RS232 Bus Configuration Menu}
   \end{figure}
 
+  \clearpage
+
   % Settings
+  Inside the settings menu, the base number for displayed values can be
+  selected. The example is currently set to hex, so all numbers displayed are
+  hexadecimal. The framing size for displayed information can also be adjusted.
+  Currently, the framing size is set to two, so the information is broken into
+  two hexadecimal numbers per frame. This was chosen in the example because it
+  matches the size of data frames that are sent. The oscilloscope will also keep
+  a running total of frames it has received, and the last button in this submenu
+  can reset that running total. This can be useful to ensure the proper number
+  of data frames when trying to decode long message sequences.
+
+  \begin{figure}[ht]
+    \includegraphics[width=\textwidth]{setting}
+    \caption{Settings submenu for UART configuration}
+  \end{figure}
+
+  \subsection{Measurements}
+
+  \begin{figure}[ht]
+    \includegraphics[width=\textwidth]{uart_bus}
+    \caption{Decoded UART Signals}
+    \label{fig:uart_bus}
+  \end{figure}
+
+  When the oscilloscope detects a data frame, it will decode the signals it
+  receives and display those values at the bottom of the screen as shown in
+  Figure~\ref{fig:uart_bus}. The blue signals represent the Rx signals that were
+  decoded. If a Tx signal had been measured, its values would be displayed in
+  the red signals at the bottom of the screen. Figure~\ref{fig:uart_bus} shows
+  0x01 and 0x02 data frames were received, and those were in fact the expected
+  signals.
+
+  \section{SPI Bus Decoding}
+
+  \subsection{Required Equipment}
+
+  The oscilloscopes available in the labs can also be used to decode SPI Bus
+  communications. The configuration process is similar to that used for UART decoding,
+  so it will be covered in slightly less detail in this section.
 
 \end{document}
