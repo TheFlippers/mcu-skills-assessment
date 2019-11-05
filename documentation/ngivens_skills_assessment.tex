@@ -41,6 +41,13 @@
   cables connected to the oscilloscope won't hurt anything, it just clutter up
   your area.
 
+  % \begin{wrapfigure}{l}{44ex}
+  %   \includegraphics[width=44ex]{serial_button_scope}
+  %   \includegraphics[width=44ex]{serial_decode_scope}
+  %   \caption{Serial button located between buttons 1 and 2. Serial Decode Menu,
+  %     shown with UART/RS232 selected.}
+  % \end{wrapfigure}
+
   \begin{wrapfigure}{l}{44ex}
     \includegraphics[width=44ex]{serial_button_scope}
     \includegraphics[width=44ex]{serial_decode_scope}
@@ -56,7 +63,7 @@
   walk through an example of configuring the scope to properly decode a UART bus
   communication.
 
-  \begin{wrapfigure}{r}{25ex}
+  \begin{wrapfigure}[18]{r}{25ex}
     \includegraphics[width=25ex]{mode_menu}
     \caption{Mode selection menu on oscilloscope}
     \label{fig:uart_mode_menu}
@@ -86,7 +93,8 @@
   settings can be configured so signals can be properly decoded.
 
   \begin{figure}[h]
-    \includegraphics[width=\textwidth]{signals_menu}
+    \centering
+    \includegraphics[width=0.9\textwidth]{signals_menu}
     \caption{Signals submenu showing channel 1 as Rx with a threshold of 1.98V}
     \label{fig:uart_signals_menu}
   \end{figure}
@@ -98,13 +106,36 @@
   rate is adjusted from within a submenu where a value can be entered directly.
   This example uses eight bit transmissions without a parity bit. An idle line
   should remain at logic high, and the bits are transmitted Least Significant
-  Bit first. This was also recorded at 19,200 baud.
+  Bit first at 19,200 baud.
 
   \begin{figure}[h]
-    \includegraphics[width=\textwidth]{bus_config}
+    \centering
+    \includegraphics[width=0.9\textwidth]{bus_config}
     \caption{UART/RS232 Bus Configuration Menu}
   \end{figure}
 
   % Settings
+  By default, the oscilloscope displays messages in hexadecimal format, one byte
+  per data frame. This can be adjusted in the settings submenu. The
+  oscilloscopes can display data in binary or ASCII as well. The data frame can
+  be set to show more more or fewer or the selected display base. This menu also
+  shows a count of data frames detected by both Tx and Rx lines as well as an
+  error count.
+
+  \begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\textwidth]{uart_settings}
+    \caption{Settings Menu}
+  \end{figure}
+
+  \pagebreak
+
+  % Lister Menu
+  The oscilloscope has a lister functionality. The lister will display the list
+  of data the oscilloscope has received and decoded as well as any errors
+  detected with a data frame. The lister can be displayed from within this menu.
+  This document only shows the navigation through the softkeys; however, if
+  touch functionality is availbable, a button on the touchscreen near the top
+  righthand side of the display can also open the lister display.
 
 \end{document}
