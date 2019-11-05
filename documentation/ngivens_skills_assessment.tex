@@ -3,7 +3,9 @@
 \usepackage{blindtext}
 \usepackage{graphicx}
 \usepackage{wrapfig}
+\usepackage{subfig}
 \graphicspath{ {./images/uart/} }
+\graphicspath{ {./images/spi/} }
 
 \title{Skills Assessment}
 \author{Nathan Givens}
@@ -40,13 +42,6 @@
   one cable needs to be connected to the oscilloscope. However, having more
   cables connected to the oscilloscope won't hurt anything, it just clutter up
   your area.
-
-  % \begin{wrapfigure}{l}{44ex}
-  %   \includegraphics[width=44ex]{serial_button_scope}
-  %   \includegraphics[width=44ex]{serial_decode_scope}
-  %   \caption{Serial button located between buttons 1 and 2. Serial Decode Menu,
-  %     shown with UART/RS232 selected.}
-  % \end{wrapfigure}
 
   \begin{wrapfigure}{l}{44ex}
     \includegraphics[width=44ex]{serial_button_scope}
@@ -114,8 +109,6 @@
     \caption{UART/RS232 Bus Configuration Menu}
   \end{figure}
 
-  \clearpage
-
   % Settings
   Inside the settings menu, the base number for displayed values can be
   selected. The example is currently set to hex, so all numbers displayed are
@@ -126,31 +119,6 @@
   a running total of frames it has received, and the last button in this submenu
   can reset that running total. This can be useful to ensure the proper number
   of data frames when trying to decode long message sequences.
-
-  \begin{figure}[ht]
-    \includegraphics[width=\textwidth]{setting}
-    \caption{Settings submenu for UART configuration}
-  \end{figure}
-
-  \subsection{Measurements}
-
-  \begin{figure}[ht]
-    \includegraphics[width=\textwidth]{uart_bus}
-    \caption{Decoded UART Signals}
-    \label{fig:uart_bus}
-  \end{figure}
-
-  When the oscilloscope detects a data frame, it will decode the signals it
-  receives and display those values at the bottom of the screen as shown in
-  Figure~\ref{fig:uart_bus}. The blue signals represent the Rx signals that were
-  decoded. If a Tx signal had been measured, its values would be displayed in
-  the red signals at the bottom of the screen. Figure~\ref{fig:uart_bus} shows
-  0x01 and 0x02 data frames were received, and those were in fact the expected
-  signals.
-
-  \section{SPI Bus Decoding}
-
-  \subsection{Required Equipment}
 
   % Lister Menu
   The oscilloscope has a lister functionality. The lister will display the list
@@ -170,15 +138,22 @@
   of data frames when trying to decode long message sequences.
 
   \begin{figure}[ht]
-    \includegraphics[width=\textwidth]{setting}
+    \includegraphics[width=\textwidth]{uart_settings}
     \caption{Settings submenu for UART configuration}
   \end{figure}
 
-  \subsection{Measurements}
+  % \clearpage
+
+  \subsection{Results}
 
   \begin{figure}[ht]
-    \includegraphics[width=\textwidth]{uart_bus}
-    \caption{Decoded UART Signals}
+    \subfloat[]{
+      \includegraphics[width=0.5\textwidth]{uart_bus}
+    }
+    \subfloat[]{
+      \includegraphics[width=0.5\textwidth]{lister}
+    }
+    \caption{Decoded UART signals with and without lister menu.}
     \label{fig:uart_bus}
   \end{figure}
 
@@ -186,9 +161,10 @@
   receives and display those values at the bottom of the screen as shown in
   Figure~\ref{fig:uart_bus}. The blue signals represent the Rx signals that were
   decoded. If a Tx signal had been measured, its values would be displayed in
-  the red signals at the bottom of the screen. Figure~\ref{fig:uart_bus} shows
+  the red signals at the bottom of the screen. Figure~\ref{fig:uart_bus}a shows
   0x01 and 0x02 data frames were received, and those were in fact the expected
-  signals.
+  signals. In Figure~\ref{fig:uart_bus}b, the lister menu can be seen displaying
+  a list of the decoded signals that were received in the last transmission.
 
   \section{SPI Bus Decoding}
 
@@ -197,5 +173,40 @@
   The oscilloscopes available in the labs can also be used to decode SPI Bus
   communications. The configuration process is similar to that used for UART decoding,
   so it will be covered in slightly less detail in this section.
+
+  \subsection{Measurement Setup}
+
+  The setup for SPI bus decoding begins by selecting SPI from the mode menu that
+  was discussed in the previous section. Selecting SPI updates all the submenus
+  with settings for SPI decoding allowing proper configuration.
+
+  \begin{figure}[h]
+    \includegraphics[width=\textwidth]{spi_serial_menu}
+    \caption{SPI Serial Decode Menu}
+  \end{figure}
+
+  % Signals
+  The Signals submenu works identically to the previously described Signals
+  submenu. The only difference is that now the signals listed are the standard
+  signals used in SPI communication (CLK, CS, MOSI, and MISO). When Setting the
+  MISO signal, there is an extra parameter to allow for a delay from the
+  selected device.
+
+  \begin{figure}[h]
+    \includegraphics[width=\textwidth]{spi_slave_delay}
+    \caption{SPI MISO signal delay menu}
+  \end{figure}
+
+  % Word Size
+  The word size should now be adjusted to set the meaningful data frame size.
+  Because SPI has a clock associated with it, a transmission can continue
+  without breaking inbetween data frames, so the oscilloscope needs to be told
+  where data boundaries are expected to be.
+  % Bit Order
+  Similarly to any other serial bus protocol, the endianness of the transmission
+  must be specified. In the examples, the signals will be sent Most Significant
+  Bit First.
+  %Lister
+  The lister is also available to the user when deocidng SPI bus signals.
 
 \end{document}
