@@ -314,4 +314,4 @@ startup/
 Debug/
 LinkerScript.ld
 NUCLEO-F401RE.xml
-mcu-flipdisk-controller Debug.cfg
+Blink Run.cfg
