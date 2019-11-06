@@ -4,8 +4,9 @@
 \usepackage{graphicx}
 \usepackage{wrapfig}
 \usepackage{subfig}
-\graphicspath{ {./images/uart/} }
-\graphicspath{ {./images/spi/} }
+% \graphicspath{ {./images/uart/} }
+% \graphicspath{ {./images/spi/} }
+% \graphicspath{ {./images/programming/} }
 
 \title{Skills Assessment}
 \author{Nathan Givens}
@@ -30,7 +31,7 @@
   some subtle differences between models.
 
   \begin{figure}[h]
-    \includegraphics[width=\textwidth]{full_scope}
+    \includegraphics[width=\textwidth]{images/uart/full_scope.jpg}
     \caption{An oscilloscope properly decoding data from a UART bus}
   \end{figure}
 
@@ -44,8 +45,8 @@
   your area.
 
   \begin{wrapfigure}{l}{44ex}
-    \includegraphics[width=44ex]{serial_button_scope}
-    \includegraphics[width=44ex]{serial_decode_scope}
+    \includegraphics[width=44ex]{images/uart/serial_button_scope.jpg}
+    \includegraphics[width=44ex]{images/uart/serial_decode_scope.jpg}
     \caption{Serial button located between buttons 1 and 2. Serial Decode Menu,
       shown with UART/RS232 selected.}
   \end{wrapfigure}
@@ -59,7 +60,7 @@
   communication.
 
   \begin{wrapfigure}[18]{r}{25ex}
-    \includegraphics[width=25ex]{mode_menu}
+    \includegraphics[width=25ex]{images/uart/mode_menu.jpg}
     \caption{Mode selection menu on oscilloscope}
     \label{fig:uart_mode_menu}
   \end{wrapfigure}
@@ -89,7 +90,7 @@
 
   \begin{figure}[h]
     \centering
-    \includegraphics[width=0.9\textwidth]{signals_menu}
+    \includegraphics[width=0.9\textwidth]{images/uart/signals_menu.jpg}
     \caption{Signals submenu showing channel 1 as Rx with a threshold of 1.98V}
     \label{fig:uart_signals_menu}
   \end{figure}
@@ -105,7 +106,7 @@
 
   \begin{figure}[h]
     \centering
-    \includegraphics[width=0.9\textwidth]{bus_config}
+    \includegraphics[width=0.9\textwidth]{images/uart/bus_config.jpg}
     \caption{UART/RS232 Bus Configuration Menu}
   \end{figure}
 
@@ -138,7 +139,7 @@
   of data frames when trying to decode long message sequences.
 
   \begin{figure}[ht]
-    \includegraphics[width=\textwidth]{uart_settings}
+    \includegraphics[width=\textwidth]{images/uart/uart_settings.jpg}
     \caption{Settings submenu for UART configuration}
   \end{figure}
 
@@ -148,10 +149,10 @@
 
   \begin{figure}[ht]
     \subfloat[]{
-      \includegraphics[width=0.5\textwidth]{uart_bus}
+      \includegraphics[width=0.5\textwidth]{images/uart/uart_bus.jpg}
     }
     \subfloat[]{
-      \includegraphics[width=0.5\textwidth]{lister}
+      \includegraphics[width=0.5\textwidth]{images/uart/lister.jpg}
     }
     \caption{Decoded UART signals with and without lister menu.}
     \label{fig:uart_bus}
@@ -174,14 +175,14 @@
   communications. The configuration process is similar to that used for UART decoding,
   so it will be covered in slightly less detail in this section.
 
-  \subsection{Measurement Setup}
+  \subsection{Setup}
 
   The setup for SPI bus decoding begins by selecting SPI from the mode menu that
   was discussed in the previous section. Selecting SPI updates all the submenus
   with settings for SPI decoding allowing proper configuration.
 
   \begin{figure}[h]
-    \includegraphics[width=\textwidth]{spi_serial_menu}
+    \includegraphics[width=\textwidth]{images/spi/spi_serial_menu.jpg}
     \caption{SPI Serial Decode Menu}
   \end{figure}
 
@@ -193,7 +194,7 @@
   selected device.
 
   \begin{figure}[h]
-    \includegraphics[width=\textwidth]{spi_slave_delay}
+    \includegraphics[width=\textwidth]{images/spi/spi_slave_delay.jpg}
     \caption{SPI MISO signal delay menu}
   \end{figure}
 
@@ -208,5 +209,9 @@
   Bit First.
   %Lister
   The lister is also available to the user when deocidng SPI bus signals.
+
+  \subsection{Results}
+
+  \section{I2C Bus Decoding}
 
 \end{document}
