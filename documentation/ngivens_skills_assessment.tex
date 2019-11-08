@@ -212,14 +212,34 @@
 
   % TODO get images for this
   % TODO Write program for esp32 to send fake data
+  The oscilloscope should now show the data that was detected in the lines. The
+  values are displayed in hexadecimal at the bottom on the screen, or, as
+  mentioned before, the lister menu will also display the detected information.
+  Figure~\ref{fig:spi_bus} shows a message recieved with values 61, 62, and 63.
+  These are the hexadecimal values that represent the letters a, b, and c, the
+  information that was sent over the bus.
 
-  \section{I2C Bus Decoding}
+  \begin{figure}[ht]
+    \begin{subfigure}[b]{0.5\textwidth}
+      \includegraphics[width=\linewidth]{images/spi/spi_bus.jpg}
+      \caption{}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.5\textwidth}
+      \includegraphics[width=\linewidth]{images/spi/spi_bus_lister.jpg}
+      \caption{}
+    \end{subfigure}
+    \caption{decoded SPI data}
+    \label{fig:spi_bus}
+  \end{figure}
+
+  \section{I\textsuperscript{2}C Bus Decoding}
 
   \subsection{Required Equipment}
 
-  Oscilloscopes, being the useful tools that they are, can also decode I2C
+  Oscilloscopes, being the useful tools that they are, can also decode
+  I\textsuperscript{2}C
   serial buses. They provide some extra insight about the information decoded
-  from an I2C bus by highlighting the data to make it easier to quickly read and
+  from an I\textsuperscript{2}C bus by highlighting the data to make it easier to quickly read and
   understand. Address bytes are colored depending on it being a read or write
   command, and the data that is transferred in a communication cycle is
   displayed in white text. The oscilloscope also displays a 'R' or an 'W' with
@@ -230,7 +250,8 @@
 
   To begin, as always, the type of serial bus must be specified. As before, the
   channels must be assigned to the corresponding signals so they may be decoded
-  properly. In this example, channel two is SCL and channel one is SDA. I2C
+  properly. In this example, channel two is SCL and channel one is SDA.
+  I\textsuperscript{2}C
   devices use designated addresses. The addresses are typically seven bits, as
   it is with this example, but could also be eight bits long. Address length
   must therefore be specified.
@@ -256,7 +277,9 @@
       \caption{}
       \label{fig:i2c_lister}
     \end{subfigure}
-    \caption{I2C Bus (a) Without Lister Menu and (b) With Lister Menu}
+    \caption{
+      I\textsuperscript{2}C Bus (a) Without Lister Menu and (b) With Lister Menu
+    }
     % \caption{I2C Bus With (b) and Without Lister Menu(a)}
     \label{fig:i2c_decode}
   \end{figure}
