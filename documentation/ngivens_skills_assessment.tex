@@ -22,25 +22,25 @@
 
   UART bus decoding is a method of capturing communications over a UART bus and
   decoding the information sent between devices. Equipment often decodes the
-  information into hexadecimal, but the equipment we have available can display
-  the information in binary and ASCII as well. The procedure described in this
-  document should apply to any of the oscilloscopes available in the senior
-  design labs but was prepared using a Keysight MS0-X 3014T so there may be
-  some subtle differences between models.
+  information into hexadecimal, but the equipment available in the labs can
+  display the information in binary and ASCII as well. The procedure described
+  in this document should apply to any of the oscilloscopes available in the
+  senior design labs but was prepared using a Keysight MS0-X 3014T so there may
+  be some subtle differences between models.
 
   \begin{figure}[h]
     \includegraphics[width=\textwidth]{images/uart/full_scope.jpg}
     \caption{An oscilloscope properly decoding data from a UART bus}
   \end{figure}
 
-  \subsection{Making the Measurement}
+  \subsection{Setup}
 
   Firstly, the oscilloscope must be turned on and the proper number of probes
   must be connected. For UART, two cables are needed to test two way
   asynchronous communications. If only one signal needs to be decoded, then only
   one cable needs to be connected to the oscilloscope. However, having more
-  cables connected to the oscilloscope won't hurt anything, it just clutter up
-  your area.
+  cables connected to the oscilloscope won't hurt anything, it may just clutter up
+  available work space.
 
   \begin{wrapfigure}{l}{44ex}
     \includegraphics[width=44ex]{images/uart/serial_button_scope.jpg}
@@ -77,14 +77,14 @@
   with which signal. In the case of UART, the availbalbe signals are Rx and Tx.
   In the example, channel 1 is set to Rx and receives the signals that are
   leaving through the devices Tx connection. The channel could be connected to
-  either Rx or Tx from the device, but sticking with convention should help to
+  either Rx or Tx from the device, but sticking with convention should help
   prevent confusion while debugging. The thresholds for signals can also be
   adjusted here in case different voltages are being used. The threshold shown
-  in Figure~\ref{fig:uart_signals_menu} for Rx was set to just above the threshold
-  for logic high in the device meant to receive the signals. The Tx signal was
-  not set because, for this example, there was no Tx signal connected. Now that
-  the oscilloscope knows which signal is connected to which channel, the bus
-  settings can be configured so signals can be properly decoded.
+  in Figure~\ref{fig:uart_signals_menu} for Rx was set to just above the
+  threshold for logic high in the device meant to receive the signals. The Tx
+  signal was not set because, for this example, no Tx signal connected. Now that
+  the signals are properly correlated to the correct channels, the bus settings
+  can be configured so signals can be properly decoded.
 
   \begin{figure}[h]
     \centering
@@ -98,9 +98,9 @@
   The number of bits, parity (if any), baud rate, idle polarity, and bit order
   can be adjusted here to match the expected transmission settings. The baud
   rate is adjusted from within a submenu where a value can be entered directly.
-  This example uses eight bit transmissions without a parity bit. An idle line
-  should remain at logic high, and the bits are transmitted Least Significant
-  Bit first. This was also recorded at 19,200 baud.
+  This example uses eight bit transmissions without a parity bit, an idle line
+  will remain at logic high, and the bits are transmitted Least Significant
+  Bit first. This example was recorded at 19,200 baud.
 
   \begin{figure}[h]
     \centering
@@ -161,9 +161,9 @@
   Figure~\ref{fig:uart_bus}. The blue signals represent the Rx signals that were
   decoded. If a Tx signal had been measured, its values would be displayed in
   the red signals at the bottom of the screen. Figure~\ref{fig:uart_bus}a shows
-  0x01 and 0x02 data frames were received, and those were in fact the expected
-  signals. In Figure~\ref{fig:uart_bus}b, the lister menu can be seen displaying
-  a list of the decoded signals that were received in the last transmission.
+  0x01 and 0x02, the expected data, were received. In
+  Figure~\ref{fig:uart_bus}b, the lister menu can be seen displaying a list of
+  the decoded signals that were received in the last transmission.
 
   \section{SPI Bus Decoding}
 
@@ -199,16 +199,19 @@
   % Word Size
   The word size should now be adjusted to set the meaningful data frame size.
   Because SPI has a clock associated with it, a transmission can continue
-  without breaking inbetween data frames, so the oscilloscope needs to be told
-  where data boundaries are expected to be.
+  without breaking in between data frames, so the oscilloscope needs to be told
+  where data boundaries are expected.
   % Bit Order
   Similarly to any other serial bus protocol, the endianness of the transmission
   must be specified. In the examples, the signals will be sent Most Significant
   Bit First.
   %Lister
-  The lister is also available to the user when deocidng SPI bus signals.
+  The lister is also available to the user when decoding SPI bus signals.
 
   \subsection{Results}
+
+  % TODO get images for this
+  % TODO Write program for esp32 to send fake data
 
   \section{I2C Bus Decoding}
 
@@ -219,18 +222,18 @@
   from an I2C bus by highlighting the data to make it easier to quickly read and
   understand. Address bytes are colored depending on it being a read or write
   command, and the data that is transferred in a communication cycle is
-  displayed in white text. The oscilloscope also displays a W or an R with
-  command bytes and it will display 'a' or '~a' for ACK or NACK for each byte
-  transmitted.
+  displayed in white text. The oscilloscope also displays a 'R' or an 'W' with
+  command bytes to signify Read or Write commands. An 'a' or '~a' for ACK or
+  NACK will be displayed for each byte transmitted.
 
   \subsection{Setup}
 
-  To begin, the oscilloscope must know which type of bus it is expecting, so the
-  mode will be set to I2C. As before, the channels must be assigned to the
-  corresponding signals so they may be decoded properly. In this example,
-  channel 2 is SCL and channel 1 is SDA. The address size must be specified so
-  the scope knows which bit to check for command type. Often times I2C addresses
-  are 7 bits, as with the example here.
+  To begin, as always, the type of serial bus must be specified. As before, the
+  channels must be assigned to the corresponding signals so they may be decoded
+  properly. In this example, channel two is SCL and channel one is SDA. I2C
+  devices use designated addresses. The addresses are typically seven bits, as
+  it is with this example, but could also be eight bits long. Address length
+  must therefore be specified.
 
   \subsection{Results}
 
@@ -240,7 +243,7 @@
   master send a write byte to the slave's address and the data sent afterwards
   is a byte to tell the slave to return information from one its registers. The
   next byte sent from the master device signals that it wishes to read the
-  value, and the following data is sent from the slave
+  value, and the following data is sent from the slave.
 
   \begin{figure}[ht]
     \begin{subfigure}[b]{.5\textwidth}
@@ -273,8 +276,8 @@
 
   To make the measurement, an output pin will need to be set high immediately
   before entering the code in question. The pin should then be set to low again
-  after exiting the block of code. Once that is set up, There are a few things
-  to do with the oscilloscope so it is ready to capture the period.
+  after exiting the block of code. Once the microcontroller is ready, the
+  oscilloscope requires a few preparations to perform this measurement.
 
   Only one oscilloscope probe is needed to perform this measurement. The scope
   needs to be set to trigger on the channel that the probe is connected to. In
@@ -295,10 +298,7 @@
   Start the microcontroller and wait for the oscilloscope to display a single
   rise and fall on the screen. If the display only show a rise and no fall, the
   time scale will need to be extended and the measurement recaptured until both
-  beginning and end times can be seen.
-  % TODO check there isn't already a function to do this
-  % don't think so... gonna assume there isn't until I read the manual later.
-  With both rise and fall visible on the
+  beginning and end times can be seen. With both rise and fall visible on the
   display, the cursor functionality on the oscilloscope can be used to estimate
   the duration.
 
@@ -307,10 +307,10 @@
   Our example execution time was simply a sleep function to check its accuracy.
   The delay was set to last for 5 milliseconds,
   Figure~\ref{fig:exectime_measure} shows that our sleep function ran just over
-  the intended duration. The oscilloscope has cursors that can be used to set on
-  the rising and falling edge. the oscilloscope will then calculate the
-  difference between the times at the two cursors for us, as shown on the right
-  of the display in Figure~\ref{fig:exectime_measure}.
+  the intended duration. The cursors on the oscilloscope are set one on the
+  rising edge of the signal and one of the falling edge. The oscilloscope now
+  calculates the difference between these cursors corresponding times and shows
+  the duration on the right as can be seen in Figure~\ref{fig:exectime_measure}.
 
   \begin{figure}[h]
     \includegraphics[width=\textwidth]{images/exec_time/exec_time.jpg}
@@ -333,15 +333,15 @@
   debug STM32 microcontrollers using SWD or Serial Wire Debugging. More
   specifically, an NUCLEO-F401RE development board will be used to demonstrate
   the procedure, but the steps should remain similar for all STM32
-  microcontrollers with the ST-LINK programmer.
+  microcontrollers when programmed with the ST-LINK programmer.
 
   \subsection{Setup}
 
   The ST-LINK programmer only requires four connections, VDD, GND, SWDIO, and
   SWCLK. While these are sufficient, connecting nRST between programmer and
-  microcontroller is often beneficial. Figure~\ref{fig:stlink_pinout} shows the
-  connections on the ST-LINK V2 programmer needed to program an STM32
-  microcontroller.
+  microcontroller is often beneficial and highly recommended.
+  Figure~\ref{fig:stlink_pinout} shows the connections on the ST-LINK V2
+  programmer needed to program an STM32 microcontroller.
 
   \begin{figure}[h]
     \includegraphics[width=0.55\textwidth]{images/programming/stlink-pinout-circled.jpg}
@@ -352,12 +352,14 @@
 
   The associated pins on the microcontroller should be listed in the datasheet.
   Figure~\ref{fig:nucleo_swd_connections} shows the connections for the
-  NUCLEO-F401RE development board. As with most development boards the NUCLEO
-  has an ST-LINK included on the board. The connections for this embedded
-  ST-LINK are also indicated in Figure~\ref{fig:nucleo_swd_connections}. If a
-  development board is available, a dedicated ST-LINK programmer is not
-  necessary to program an embedded STM32 Microcontroller, instead a development
-  board can serve this purpose.
+  NUCLEO-F401RE development board. It is important to note that even with VCC
+  connected between board and programmer, the microcontroller still requires
+  external power.  As with most development boards the NUCLEO has an ST-LINK
+  included on the board. The connections for this embedded ST-LINK are also
+  indicated in Figure~\ref{fig:nucleo_swd_connections}. If a development board
+  is available, a dedicated ST-LINK programmer is not necessary to program an
+  embedded STM32 Microcontroller, instead a development board can serve this
+  purpose.
 
   \begin{figure}[ht]
     \centering
