@@ -269,15 +269,15 @@ def main():
     temp_i2c_id, accel_i2c_id = i2c_0.scan()
 
     while True:
-        accel_x, accel_y, accel_z = read_accel_int(i2c_0, accel_i2c_id)
         temp = detect_temp(i2c_0, temp_i2c_id)
+        accel_x, accel_y, accel_z = read_accel_int(i2c_0, accel_i2c_id)
 
         print("Acceleration x: {}".format(accel_x))
         print("Acceleration y: {}".format(accel_y))
         print("Acceleration z: {}".format(accel_z))
         print("Temperature: {}".format(temp))
 
-        sleep(20)
+        sleep(2)
 
 
 main()
