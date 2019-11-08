@@ -70,7 +70,7 @@
   decoding, UART/RS232 is selected from the list. Other sections of this
   document discuss some of the other protocols listed here. After UART/RS232 is
   selected, all submenus update to display settings
-  specific to decoding UART.\@
+  specific to decoding UART.
 
   % Signals submenu
   The signals submenu gives the ability to specify which input is associated
@@ -85,6 +85,8 @@
   signal was not set because, for this example, no Tx signal connected. Now that
   the signals are properly correlated to the correct channels, the bus settings
   can be configured so signals can be properly decoded.
+
+  \clearpage
 
   \begin{figure}[h]
     \centering
@@ -125,23 +127,21 @@
   detected with a data frame. The lister can be displayed from within this menu.
   This document only shows the navigation through the softkeys; however, if
   touch functionality is availbable, a button on the touchscreen near the top
-  righthand side of the display can also open the lister display.
-  Inside the settings menu, the base number for displayed values can be
-  selected. The example is currently set to hex, so all numbers displayed are
-  hexadecimal. The framing size for displayed information can also be adjusted.
-  Currently, the framing size is set to two, so the information is broken into
-  two hexadecimal numbers per frame. This was chosen in the example because it
-  matches the size of data frames that are sent. The oscilloscope will also keep
-  a running total of frames it has received, and the last button in this submenu
-  can reset that running total. This can be useful to ensure the proper number
-  of data frames when trying to decode long message sequences.
+  righthand side of the display can also open the lister display.  Inside the
+  settings menu, the base number for displayed values can be selected. The
+  example is currently set to hex, so all numbers displayed are hexadecimal. The
+  framing size for displayed information can also be adjusted.  Currently, the
+  framing size is set to two, so the information is broken into two hexadecimal
+  numbers per frame. This was chosen in the example because it matches the size
+  of data frames that are sent. The oscilloscope will also keep a running total
+  of frames it has received, and the last button in this submenu can reset that
+  running total. This can be useful to count data frames when working with long
+  communications.
 
   \begin{figure}[ht]
     \includegraphics[width=\textwidth]{images/uart/uart_settings.jpg}
     \caption{Settings submenu for UART configuration}
   \end{figure}
-
-  % \clearpage
 
   \subsection{Results}
 
