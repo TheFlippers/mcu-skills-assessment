@@ -314,4 +314,4 @@ startup/
 Debug/
 LinkerScript.ld
 NUCLEO-F401RE.xml
-Blink Run.cfg
+blink_test Run.cfg
